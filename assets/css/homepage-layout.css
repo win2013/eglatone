@@ -1,0 +1,1706 @@
+/*
+Homepage layout overrides for Eglatone
+--------------------------------------
+1. Services + Featured Content sections -> compact N-up carousels
+2. Blog ("News") listing -> 2/3/4 column grid with a "... more" loader
+3. Shared card styling so all three sections read as one system
+
+Column counts come from Customizer > Theme Options > Homepage Layout.
+Loaded after style.css, so it intentionally wins on shared selectors.
+*/
+
+/*--------------------------------------------------------------
+1. Shared card treatment
+--------------------------------------------------------------*/
+
+.eglatone-2up-carousel .hentry-inner,
+.archive-post-wrap.blog-grid .hentry .hentry-inner {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+  -webkit-transition: -webkit-transform 0.25s ease, -webkit-box-shadow 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease; }
+
+.eglatone-2up-carousel .hentry-inner:hover,
+.archive-post-wrap.blog-grid .hentry .hentry-inner:hover {
+  -webkit-transform: translateY(-4px);
+  transform: translateY(-4px);
+  -webkit-box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28); }
+
+.eglatone-2up-carousel .post-thumbnail img,
+.eglatone-2up-carousel .post-thumbnail-background,
+.archive-post-wrap.blog-grid .post-thumbnail-background {
+  -webkit-transition: -webkit-transform 0.4s ease;
+  transition: transform 0.4s ease; }
+
+.eglatone-2up-carousel .hentry-inner:hover .post-thumbnail img,
+.archive-post-wrap.blog-grid .hentry-inner:hover .post-thumbnail-background {
+  -webkit-transform: scale(1.04);
+  transform: scale(1.04); }
+
+/*--------------------------------------------------------------
+2. Section carousels (Services / Featured Content)
+--------------------------------------------------------------*/
+
+/* Owl hides .owl-carousel until it initialises - keep content visible
+   when JS or Owl is unavailable. */
+.no-js .eglatone-2up-carousel,
+.eglatone-2up-carousel.no-carousel-fallback {
+  display: -ms-grid;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-gap: 30px;
+  gap: 30px; }
+
+/* Tighter section chrome so the first two blocks take less vertical space. */
+#service-section.section,
+#featured-content-section.section {
+  padding-top: 42px;
+  padding-bottom: 42px; }
+
+#service-section .section-heading-wrapper,
+#featured-content-section .section-heading-wrapper {
+  margin-bottom: 28px;
+  padding-top: 0;
+  padding-bottom: 0; }
+
+#service-section .section-title,
+#featured-content-section .section-title {
+  margin-bottom: 0; }
+
+/* Equal height slides. */
+.eglatone-2up-carousel .owl-stage {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch; }
+
+.eglatone-2up-carousel .owl-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto; }
+
+.eglatone-2up-carousel .owl-item > .hentry,
+.eglatone-2up-carousel > .hentry {
+  width: 100% !important;
+  max-width: none !important;
+  float: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+
+.eglatone-2up-carousel .hentry-inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  height: 100%; }
+
+.eglatone-2up-carousel .entry-container {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 24px 26px !important;
+  width: 100% !important;
+  float: none !important;
+  margin: 0 !important; }
+
+.eglatone-2up-carousel .entry-title {
+  font-size: 21px;
+  font-size: 1.3125rem;
+  line-height: 1.3;
+  margin-bottom: 12px; }
+
+/* 4-up cards are narrow - drop the type a step. */
+.eglatone-2up-carousel.columns-4 .entry-title {
+  font-size: 18px;
+  font-size: 1.125rem; }
+
+.eglatone-2up-carousel .entry-meta {
+  margin-bottom: 8px; }
+
+/* Keep the cards short - the full text lives on the single post. */
+.eglatone-2up-carousel .entry-summary p {
+  margin-bottom: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden; }
+
+.eglatone-2up-carousel.columns-4 .entry-summary p {
+  -webkit-line-clamp: 4; }
+
+/* Uniform banner crop for BOTH sections so they read as one system. */
+#featured-content-section .eglatone-2up-carousel .post-thumbnail,
+#service-section .eglatone-2up-carousel .post-thumbnail {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto; }
+
+#featured-content-section .eglatone-2up-carousel .post-thumbnail img,
+#service-section .eglatone-2up-carousel .post-thumbnail img {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: 200px;
+  margin: 0;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -webkit-border-radius: 0;
+  border-radius: 0; }
+
+.eglatone-2up-carousel.columns-4 .post-thumbnail img {
+  height: 170px; }
+
+/* Carousel navigation. */
+.eglatone-2up-carousel .owl-nav {
+  margin-top: 24px;
+  text-align: center; }
+
+.eglatone-2up-carousel .owl-nav button.owl-prev,
+.eglatone-2up-carousel .owl-nav button.owl-next {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  margin: 0 6px;
+  border: 1px solid currentColor;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  background: transparent;
+  opacity: 0.6;
+  padding: 0; }
+
+.eglatone-2up-carousel .owl-nav button.owl-prev:hover,
+.eglatone-2up-carousel .owl-nav button.owl-next:hover,
+.eglatone-2up-carousel .owl-nav button.owl-prev:focus,
+.eglatone-2up-carousel .owl-nav button.owl-next:focus {
+  opacity: 1;
+  background: transparent; }
+
+.eglatone-2up-carousel .owl-nav button.owl-prev:before,
+.eglatone-2up-carousel .owl-nav button.owl-next:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor; }
+
+.eglatone-2up-carousel .owl-nav button.owl-prev:before {
+  -webkit-transform: translate(-30%, -50%) rotate(-135deg);
+  transform: translate(-30%, -50%) rotate(-135deg); }
+
+.eglatone-2up-carousel .owl-nav button.owl-next:before {
+  -webkit-transform: translate(-70%, -50%) rotate(45deg);
+  transform: translate(-70%, -50%) rotate(45deg); }
+
+/* Pagination dots are off - the arrows carry the affordance on their own.
+   Hidden in CSS as well as JS so nothing shows during initialisation. */
+.eglatone-2up-carousel .owl-dots {
+  display: none !important; }
+
+@media screen and (max-width: 767px) {
+  #featured-content-section .eglatone-2up-carousel .post-thumbnail img,
+  #service-section .eglatone-2up-carousel .post-thumbnail img {
+    height: 180px; } }
+
+/*--------------------------------------------------------------
+3. Blog grid ("News") + "... more" loader
+--------------------------------------------------------------*/
+
+/* Mobile first: one column, stepping up with the viewport. */
+.archive-post-wrap.blog-grid {
+  display: -ms-grid;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-gap: 24px;
+  gap: 24px;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%; }
+
+.archive-post-wrap.blog-grid .hentry {
+  width: 100% !important;
+  max-width: none !important;
+  float: none !important;
+  clear: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  min-width: 0; }
+
+.archive-post-wrap.blog-grid .hentry .hentry-inner,
+.archive-post-wrap.blog-grid .hentry .post-wrapper {
+  max-width: none !important;
+  width: 100% !important;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin: 0 !important; }
+
+.archive-post-wrap.blog-grid .hentry .hentry-inner > div {
+  width: 100% !important; }
+
+/* Thumbnail becomes a fixed-ratio card image instead of a split panel. */
+.archive-post-wrap.blog-grid .hentry .post-thumbnail-background {
+  position: relative !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding-bottom: 62% !important;
+  margin: 0 !important;
+  background-position: center center !important;
+  background-size: cover !important;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto; }
+
+.archive-post-wrap.blog-grid .hentry .post-thumbnail-background .cover-link {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block; }
+
+.archive-post-wrap.blog-grid .hentry .entry-container,
+.archive-post-wrap.blog-grid .hentry:nth-child(2n) .entry-container,
+.archive-post-wrap.blog-grid .hentry .post-thumbnail-background + .entry-container {
+  position: relative !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  width: 100% !important;
+  max-width: none !important;
+  float: none !important;
+  margin: 0 !important;
+  padding: 22px 24px !important;
+  -webkit-transform: none !important;
+  transform: none !important;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto; }
+
+.archive-post-wrap.blog-grid .hentry .entry-title {
+  font-size: 19px;
+  font-size: 1.1875rem;
+  line-height: 1.35;
+  margin-bottom: 10px; }
+
+.archive-post-wrap.blog-grid.columns-4 .hentry .entry-title {
+  font-size: 17px;
+  font-size: 1.0625rem; }
+
+.archive-post-wrap.blog-grid .hentry .entry-meta {
+  font-size: 13px;
+  font-size: 0.8125rem;
+  margin-bottom: 8px; }
+
+.archive-post-wrap.blog-grid .hentry .entry-summary p {
+  font-size: 15px;
+  font-size: 0.9375rem;
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden; }
+
+.archive-post-wrap.blog-grid .hentry .sticky-post {
+  margin-bottom: 10px; }
+
+/* Column steps. columns-2 stays at 2 all the way up. */
+@media screen and (min-width: 568px) {
+  .archive-post-wrap.blog-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-gap: 30px;
+    gap: 30px;
+    padding: 0 30px; } }
+
+@media screen and (min-width: 901px) {
+  .archive-post-wrap.blog-grid.columns-3,
+  .archive-post-wrap.blog-grid.columns-4 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+@media screen and (min-width: 1201px) {
+  .archive-post-wrap.blog-grid.columns-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+/* "... more" button */
+.eglatone-load-more {
+  clear: both;
+  text-align: center;
+  padding: 42px 30px 0; }
+
+.eglatone-load-more-button .load-more-busy {
+  display: none; }
+
+.eglatone-load-more-button.is-busy .load-more-text {
+  display: none; }
+
+.eglatone-load-more-button.is-busy .load-more-busy {
+  display: inline; }
+
+.eglatone-load-more-button[disabled] {
+  cursor: progress;
+  opacity: 0.7; }
+
+.eglatone-load-more-finished:empty {
+  display: none; }
+
+.eglatone-load-more-finished {
+  margin: 18px 0 0;
+  font-size: 15px;
+  font-size: 0.9375rem;
+  opacity: 0.7; }
+
+/*--------------------------------------------------------------
+4. Reduced motion
+--------------------------------------------------------------*/
+
+@media (prefers-reduced-motion: reduce) {
+  .eglatone-2up-carousel .hentry-inner,
+  .archive-post-wrap.blog-grid .hentry .hentry-inner,
+  .eglatone-2up-carousel .post-thumbnail img,
+  .archive-post-wrap.blog-grid .post-thumbnail-background {
+    -webkit-transition: none;
+    transition: none; }
+
+  .eglatone-2up-carousel .hentry-inner:hover,
+  .archive-post-wrap.blog-grid .hentry .hentry-inner:hover {
+    -webkit-transform: none;
+    transform: none; }
+
+  .eglatone-2up-carousel .hentry-inner:hover .post-thumbnail img,
+  .archive-post-wrap.blog-grid .hentry-inner:hover .post-thumbnail-background {
+    -webkit-transform: none;
+    transform: none; } }
+
+/*--------------------------------------------------------------
+5. TECHED.TV ticker
+--------------------------------------------------------------*/
+
+.eglatone-ticker {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border-top: 1px solid rgba(128, 128, 128, 0.25);
+  border-bottom: 1px solid rgba(128, 128, 128, 0.25); }
+
+.eglatone-ticker .ticker-label {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 10px;
+  padding: 0 22px;
+  height: 74px;
+  font-size: 13px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  z-index: 2; }
+
+.eglatone-ticker .ticker-pulse {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  background: currentColor;
+  -webkit-animation: eglatone-ticker-pulse 2s ease-in-out infinite;
+  animation: eglatone-ticker-pulse 2s ease-in-out infinite; }
+
+@-webkit-keyframes eglatone-ticker-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; } }
+
+@keyframes eglatone-ticker-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; } }
+
+.eglatone-ticker .ticker-viewport {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  overflow: hidden;
+  min-width: 0;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%); }
+
+.eglatone-ticker .ticker-track {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: -webkit-max-content;
+  width: max-content; }
+
+.eglatone-ticker.ticker-ready .ticker-track {
+  -webkit-animation-name: eglatone-ticker-scroll;
+  animation-name: eglatone-ticker-scroll;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite; }
+
+.eglatone-ticker:hover .ticker-track,
+.eglatone-ticker:focus-within .ticker-track {
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused; }
+
+@-webkit-keyframes eglatone-ticker-scroll {
+  from { -webkit-transform: translate3d(0, 0, 0); }
+  to { -webkit-transform: translate3d(-50%, 0, 0); } }
+
+@keyframes eglatone-ticker-scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); } }
+
+.eglatone-ticker .ticker-item {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+.eglatone-ticker .ticker-item:before {
+  content: none; }
+
+.eglatone-ticker .ticker-link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 14px;
+  height: 74px;
+  padding: 0 28px 0 0;
+  margin-right: 28px;
+  text-decoration: none;
+  border-right: 1px solid rgba(128, 128, 128, 0.25); }
+
+.eglatone-ticker .ticker-thumb {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  display: block;
+  width: 46px;
+  height: 46px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat; }
+
+.eglatone-ticker .ticker-text {
+  display: block;
+  min-width: 0; }
+
+.eglatone-ticker .ticker-title {
+  display: block;
+  font-size: 15px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.25;
+  max-width: 460px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
+.eglatone-ticker .ticker-date {
+  display: block;
+  margin-top: 3px;
+  font-size: 12px;
+  font-size: 0.75rem;
+  opacity: 0.65; }
+
+.eglatone-ticker .ticker-link:hover .ticker-title,
+.eglatone-ticker .ticker-link:focus .ticker-title {
+  text-decoration: underline; }
+
+/* Reduced motion / no JS: a plain scrollable strip, no animation. */
+.eglatone-ticker.ticker-static .ticker-viewport {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; }
+
+.eglatone-ticker.ticker-static .ticker-track {
+  -webkit-animation: none;
+  animation: none; }
+
+@media screen and (max-width: 767px) {
+  .eglatone-ticker .ticker-label {
+    padding: 0 14px;
+    font-size: 11px;
+    font-size: 0.6875rem; }
+
+  .eglatone-ticker .ticker-label-text {
+    display: none; }
+
+  .eglatone-ticker .ticker-title {
+    max-width: 260px; } }
+
+/*--------------------------------------------------------------
+6. Suppress share-button rows inside grid/carousel cards
+--------------------------------------------------------------
+
+   Share plugins hook the_excerpt, so their button rows get injected into every
+   card in the grid. They belong on the single post, not on a 4-across card.
+   Scoped to the grid and the section carousels only - single posts keep theirs.
+--------------------------------------------------------------*/
+
+.archive-post-wrap.blog-grid .a2a_kit,
+.archive-post-wrap.blog-grid .addtoany_share_save_container,
+.archive-post-wrap.blog-grid .addtoany_content,
+.archive-post-wrap.blog-grid .heateor_sss_sharing_container,
+.archive-post-wrap.blog-grid .heateorSssClear,
+.archive-post-wrap.blog-grid .swp_social_panel,
+.archive-post-wrap.blog-grid .sharedaddy,
+.archive-post-wrap.blog-grid .jp-relatedposts,
+.archive-post-wrap.blog-grid .essb_links,
+.archive-post-wrap.blog-grid .social-warfare,
+.archive-post-wrap.blog-grid .sfsi_widget,
+.archive-post-wrap.blog-grid .sfsiaftrpstwpr,
+.archive-post-wrap.blog-grid .ssb-share-links,
+.archive-post-wrap.blog-grid .simplesharebuttons,
+.archive-post-wrap.blog-grid .mashsb-container,
+.archive-post-wrap.blog-grid .shareaholic-canvas,
+.archive-post-wrap.blog-grid .supsystic-social-sharing,
+.eglatone-2up-carousel .a2a_kit,
+.eglatone-2up-carousel .addtoany_share_save_container,
+.eglatone-2up-carousel .addtoany_content,
+.eglatone-2up-carousel .heateor_sss_sharing_container,
+.eglatone-2up-carousel .heateorSssClear,
+.eglatone-2up-carousel .swp_social_panel,
+.eglatone-2up-carousel .sharedaddy,
+.eglatone-2up-carousel .essb_links,
+.eglatone-2up-carousel .social-warfare,
+.eglatone-2up-carousel .sfsi_widget,
+.eglatone-2up-carousel .sfsiaftrpstwpr,
+.eglatone-2up-carousel .ssb-share-links,
+.eglatone-2up-carousel .simplesharebuttons,
+.eglatone-2up-carousel .mashsb-container,
+.eglatone-2up-carousel .shareaholic-canvas,
+.eglatone-2up-carousel .supsystic-social-sharing {
+  display: none !important; }
+
+/*--------------------------------------------------------------
+7. Single post: header meta + framed media band
+--------------------------------------------------------------*/
+
+/* --- category chips above the title --- */
+.entry-header .entry-chips {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 0 18px; }
+
+.entry-header .entry-chip {
+  display: inline-block;
+  padding: 5px 13px;
+  font-size: 11px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.6;
+  -webkit-border-radius: 100px;
+  border-radius: 100px;
+  border: 1px solid currentColor;
+  opacity: 0.75;
+  text-decoration: none; }
+
+.entry-header .entry-chip:hover,
+.entry-header .entry-chip:focus {
+  opacity: 1;
+  text-decoration: none; }
+
+/* --- byline: avatar + author + date + reading/listening time --- */
+.entry-header .entry-byline {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+  font-size: 14px;
+  font-size: 0.875rem; }
+
+.entry-header .byline-avatar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  line-height: 0; }
+
+.entry-header .byline-avatar img {
+  width: 36px;
+  height: 36px;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  display: block; }
+
+.entry-header .byline-author {
+  font-weight: 700; }
+
+.entry-header .byline-sep {
+  opacity: 0.4; }
+
+.entry-header .byline-length {
+  opacity: 0.7; }
+
+.entry-header .entry-byline .entry-meta,
+.entry-header .entry-byline .posted-on {
+  margin: 0;
+  font-size: inherit; }
+
+/* --- the dark band the artwork sits on --- */
+.eglatone-single-media {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  padding: 48px 20px;
+  background-color: #131218;
+  overflow: hidden; }
+
+.eglatone-single-frame {
+  max-width: 900px;
+  margin: 0 auto;
+  -webkit-border-radius: 14px;
+  border-radius: 14px;
+  overflow: hidden;
+  background-color: #1c1b23;
+  -webkit-box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45); }
+
+.eglatone-single-frame .entry-image,
+.eglatone-single-frame .post-thumbnail {
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  background: transparent; }
+
+.eglatone-single-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0; }
+
+/* --- the player, pulled up under the artwork --- */
+.eglatone-single-player {
+  padding: 0; }
+
+.eglatone-single-frame.has-player .eglatone-single-player {
+  padding: 20px 24px 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+  color: #f2f2f4; }
+
+.eglatone-single-frame .eglatone-single-player .powerpress_player,
+.eglatone-single-frame .eglatone-single-player .wp-audio-shortcode,
+.eglatone-single-frame .eglatone-single-player audio {
+  width: 100% !important;
+  max-width: 100%;
+  margin: 0 0 12px; }
+
+.eglatone-single-frame .eglatone-single-player .powerpress_links {
+  margin: 0;
+  font-size: 13px;
+  font-size: 0.8125rem;
+  opacity: 0.75;
+  color: #f2f2f4; }
+
+.eglatone-single-frame .eglatone-single-player .powerpress_links a {
+  color: #f2f2f4;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 1px; }
+
+.eglatone-single-frame .eglatone-single-player .powerpress_links a:hover,
+.eglatone-single-frame .eglatone-single-player .powerpress_links a:focus {
+  border-bottom-color: currentColor; }
+
+/* Give the content below the band room to breathe. */
+.eglatone-single-media + .entry-content {
+  margin-top: 42px; }
+
+@media screen and (max-width: 767px) {
+  .eglatone-single-media {
+    padding: 28px 16px; }
+
+  .eglatone-single-frame {
+    -webkit-border-radius: 10px;
+    border-radius: 10px; }
+
+  .eglatone-single-frame.has-player .eglatone-single-player {
+    padding: 16px 16px 18px; }
+
+  .entry-header .entry-byline {
+    font-size: 13px;
+    font-size: 0.8125rem; } }
+
+/*--------------------------------------------------------------
+8. Achievements hero (stats + introduction + buttons)
+--------------------------------------------------------------*/
+
+.eglatone-hero {
+  --hero-accent: #01e0af;
+  padding: 64px 0 68px;
+  background-color: #131218;
+  color: #f2f2f4; }
+
+.eglatone-hero .wrapper {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 30px; }
+
+/* --- stat columns: 4 across, one row, separated by hairlines --- */
+.eglatone-hero .hero-stats {
+  display: -ms-grid;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-gap: 0;
+  gap: 0;
+  list-style: none;
+  margin: 0 0 52px;
+  padding: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+
+.eglatone-hero .hero-stat {
+  list-style: none;
+  margin: 0;
+  padding: 30px 22px;
+  text-align: center;
+  border-left: 1px solid rgba(255, 255, 255, 0.1); }
+
+.eglatone-hero .hero-stat:first-child {
+  border-left: 0; }
+
+.eglatone-hero .hero-stat:before {
+  content: none; }
+
+.eglatone-hero .hero-stat-value {
+  display: block;
+  font-size: 42px;
+  font-size: 2.625rem;
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--hero-accent);
+  margin-bottom: 10px; }
+
+.eglatone-hero .hero-stat-label {
+  display: block;
+  font-size: 14px;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  opacity: 0.8; }
+
+/* --- introduction --- */
+.eglatone-hero .hero-intro {
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center; }
+
+.eglatone-hero .hero-eyebrow {
+  margin: 0 0 12px;
+  font-size: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--hero-accent); }
+
+.eglatone-hero .hero-title {
+  /* The theme sets a colour on h1-h6, which beats the colour this section
+     inherits - so state it explicitly here. */
+  color: #ffffff;
+  margin: 0 0 24px;
+  font-size: 34px;
+  font-size: 2.125rem;
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: -0.01em; }
+
+.eglatone-hero .hero-text {
+  text-align: left;
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #e8e8ec;
+  opacity: 1; }
+
+.eglatone-hero .hero-text p {
+  color: inherit;
+  margin: 0 0 18px; }
+
+.eglatone-hero .hero-text p:last-child {
+  margin-bottom: 0; }
+
+/* Collapsed by default only once JS has taken over, so the full text is
+   still readable with JS disabled. */
+.eglatone-hero .hero-text-more {
+  margin-top: 18px; }
+
+.eglatone-hero.is-collapsible .hero-text-more {
+  display: none; }
+
+.eglatone-hero.is-collapsible.is-expanded .hero-text-more {
+  display: block; }
+
+.eglatone-hero .hero-more-toggle {
+  display: none;
+  margin: 20px auto 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  color: var(--hero-accent);
+  font-size: 13px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  line-height: 1.8; }
+
+.eglatone-hero.is-collapsible .hero-more-toggle {
+  display: inline-block; }
+
+.eglatone-hero .hero-more-toggle:hover,
+.eglatone-hero .hero-more-toggle:focus {
+  background: transparent;
+  opacity: 0.75; }
+
+/* --- buttons --- */
+.eglatone-hero .hero-actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 34px; }
+
+.eglatone-hero .hero-button {
+  display: inline-block;
+  padding: 14px 30px;
+  font-size: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  text-decoration: none;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-transition: opacity 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  transition: opacity 0.2s ease, background-color 0.2s ease, color 0.2s ease; }
+
+.eglatone-hero .hero-button-primary {
+  background-color: var(--hero-accent);
+  color: #0d3d33;
+  border: 1px solid var(--hero-accent); }
+
+.eglatone-hero .hero-button-primary:hover,
+.eglatone-hero .hero-button-primary:focus {
+  opacity: 0.85;
+  text-decoration: none;
+  color: #0d3d33; }
+
+.eglatone-hero .hero-button-ghost {
+  background-color: transparent;
+  color: #f2f2f4;
+  border: 1px solid rgba(255, 255, 255, 0.35); }
+
+.eglatone-hero .hero-button-ghost:hover,
+.eglatone-hero .hero-button-ghost:focus {
+  border-color: #f2f2f4;
+  text-decoration: none;
+  color: #f2f2f4; }
+
+@media screen and (max-width: 1000px) {
+  .eglatone-hero .hero-stat {
+    padding: 26px 14px; }
+
+  .eglatone-hero .hero-stat-value {
+    font-size: 34px;
+    font-size: 2.125rem; }
+
+  .eglatone-hero .hero-stat-label {
+    font-size: 13px;
+    font-size: 0.8125rem; } }
+
+@media screen and (max-width: 760px) {
+  .eglatone-hero .hero-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  /* In a 2-up grid the left border belongs to the right-hand column only,
+     and every row after the first needs a rule above it. */
+  .eglatone-hero .hero-stat:nth-child(odd) {
+    border-left: 0; }
+
+  .eglatone-hero .hero-stat:nth-child(n + 3) {
+    border-top: 1px solid rgba(255, 255, 255, 0.1); }
+
+  .eglatone-hero .hero-stat-value {
+    font-size: 30px;
+    font-size: 1.875rem; }
+
+  .eglatone-hero .hero-title {
+    font-size: 27px;
+    font-size: 1.6875rem; } }
+
+@media screen and (max-width: 480px) {
+  .eglatone-hero {
+    padding: 44px 0 48px; }
+
+  .eglatone-hero .wrapper {
+    padding: 0 20px; }
+
+  .eglatone-hero .hero-stats {
+    grid-template-columns: minmax(0, 1fr);
+    margin-bottom: 40px; }
+
+  .eglatone-hero .hero-stat,
+  .eglatone-hero .hero-stat:nth-child(odd) {
+    padding: 20px 18px;
+    border-left: 0; }
+
+  .eglatone-hero .hero-stat + .hero-stat {
+    border-top: 1px solid rgba(255, 255, 255, 0.1); }
+
+  .eglatone-hero .hero-actions .hero-button {
+    width: 100%;
+    text-align: center; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .eglatone-hero .hero-button {
+    -webkit-transition: none;
+    transition: none; } }
+
+/*--------------------------------------------------------------
+9. Hero highlights + contact popup
+--------------------------------------------------------------*/
+
+/* --- highlight pills --- */
+.eglatone-hero .hero-credentials {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  gap: 10px;
+  list-style: none;
+  margin: 0 0 48px;
+  padding: 0; }
+
+.eglatone-hero .hero-credential {
+  list-style: none;
+  margin: 0;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  -webkit-border-radius: 100px;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background-color: rgba(255, 255, 255, 0.04);
+  opacity: 0.9; }
+
+.eglatone-hero .hero-credential:before {
+  content: none; }
+
+/* --- contact popup --- */
+.hero-dialog[hidden] {
+  display: none; }
+
+.hero-dialog {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 99999;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 24px; }
+
+.hero-dialog-backdrop {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.72);
+  cursor: pointer; }
+
+.hero-dialog-panel {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  padding: 34px 34px 30px;
+  -webkit-border-radius: 14px;
+  border-radius: 14px;
+  background-color: #1c1b23;
+  color: #f2f2f4;
+  -webkit-box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5); }
+
+.hero-dialog-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #f2f2f4;
+  font-size: 26px;
+  line-height: 1;
+  opacity: 0.6;
+  cursor: pointer; }
+
+.hero-dialog-close:hover,
+.hero-dialog-close:focus {
+  opacity: 1;
+  background: transparent; }
+
+.hero-dialog-title {
+  margin: 0 0 8px;
+  font-size: 24px;
+  font-size: 1.5rem;
+  line-height: 1.25;
+  color: #f2f2f4; }
+
+.hero-dialog-intro {
+  margin: 0 0 22px;
+  font-size: 15px;
+  font-size: 0.9375rem;
+  opacity: 0.75; }
+
+.hero-form .hero-field {
+  margin: 0 0 16px; }
+
+.hero-form .hero-field label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.75; }
+
+.hero-form input[type="text"],
+.hero-form input[type="email"],
+.hero-form textarea {
+  width: 100%;
+  padding: 11px 14px;
+  font-size: 15px;
+  font-size: 0.9375rem;
+  color: #f2f2f4;
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  -webkit-border-radius: 6px;
+  border-radius: 6px; }
+
+.hero-form input[type="text"]:focus,
+.hero-form input[type="email"]:focus,
+.hero-form textarea:focus {
+  border-color: var(--hero-accent, #01e0af);
+  outline: 0; }
+
+.hero-form textarea {
+  resize: vertical;
+  min-height: 120px; }
+
+/* Honeypot: present for bots, invisible and unreachable for people. */
+.hero-form .hero-field-hp {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden; }
+
+.hero-form .hero-form-actions {
+  margin: 22px 0 0; }
+
+.hero-form .hero-form-submit {
+  width: 100%;
+  border: 0;
+  cursor: pointer; }
+
+.hero-form .hero-submit-busy {
+  display: none; }
+
+.hero-form.is-sending .hero-submit-text {
+  display: none; }
+
+.hero-form.is-sending .hero-submit-busy {
+  display: inline; }
+
+.hero-form.is-sending .hero-form-submit {
+  opacity: 0.7;
+  cursor: progress; }
+
+.hero-form .hero-form-status {
+  margin: 14px 0 0;
+  font-size: 14px;
+  font-size: 0.875rem; }
+
+.hero-form .hero-form-status:empty {
+  display: none; }
+
+.hero-form .hero-form-status.is-error {
+  color: #ff8b8b; }
+
+.hero-form .hero-form-status.is-success {
+  color: var(--hero-accent, #01e0af); }
+
+body.hero-dialog-open {
+  overflow: hidden; }
+
+@media screen and (max-width: 480px) {
+  .eglatone-hero .hero-credentials {
+    gap: 8px;
+    margin-bottom: 36px; }
+
+  .eglatone-hero .hero-credential {
+    font-size: 12px;
+    font-size: 0.75rem;
+    padding: 7px 13px; }
+
+  .hero-dialog {
+    padding: 12px; }
+
+  .hero-dialog-panel {
+    padding: 28px 20px 24px; } }
+
+/*--------------------------------------------------------------
+10. Header type sizes
+--------------------------------------------------------------*/
+
+/* Site title in the top bar (Customizer > Site Identity). */
+.site-title {
+  font-size: 30px;
+  font-size: 1.875rem;
+  line-height: 1.25; }
+
+.site-description {
+  font-size: 15px;
+  font-size: 0.9375rem; }
+
+/* Header Media title - the big name over the header image.
+
+   The theme hard-codes .custom-header-content-wrapper to width:600px, which is
+   not enough for a long name at this size, so it broke after "DR. EDWIN A.".
+   Widen the box, then size the type fluidly so it fills the line without ever
+   overflowing on a narrow screen. */
+.custom-header .custom-header-content-wrapper {
+  width: 100%;
+  max-width: 960px; }
+
+.custom-header .custom-header-content .entry-title {
+  font-size: 58px; /* fallback for browsers without clamp() */
+  font-size: clamp( 30px, 4.6vw, 62px );
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  text-wrap: balance; }
+
+/* Header Media text - the tagline under it. */
+.custom-header-content .site-header-text {
+  font-size: 19px;
+  font-size: 1.1875rem;
+  line-height: 1.55; }
+
+@media screen and (max-width: 1024px) {
+  .site-title {
+    font-size: 26px;
+    font-size: 1.625rem; } }
+
+@media screen and (max-width: 767px) {
+  .custom-header-content .site-header-text {
+    font-size: 16px;
+    font-size: 1rem; }
+
+  .site-title {
+    font-size: 22px;
+    font-size: 1.375rem; } }
+
+/* The hero heading was picking up a muted colour - make it full strength. */
+.eglatone-hero .hero-title {
+  color: #ffffff;
+  opacity: 1; }
+
+/*--------------------------------------------------------------
+11. Press mentions strip
+--------------------------------------------------------------*/
+
+.eglatone-press {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08); }
+
+.eglatone-press .press-label {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  padding: 0 20px;
+  height: 76px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #6b6b76;
+  white-space: nowrap;
+  z-index: 2; }
+
+.eglatone-press .press-viewport {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  overflow: hidden;
+  min-width: 0;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 30px, #000 calc(100% - 30px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 30px, #000 calc(100% - 30px), transparent 100%); }
+
+.eglatone-press .press-track {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: -webkit-max-content;
+  width: max-content; }
+
+.eglatone-press.is-ready .press-track {
+  -webkit-animation-name: eglatone-press-scroll;
+  animation-name: eglatone-press-scroll;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite; }
+
+.eglatone-press:hover .press-track,
+.eglatone-press:focus-within .press-track {
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused; }
+
+@-webkit-keyframes eglatone-press-scroll {
+  from { -webkit-transform: translate3d(0, 0, 0); }
+  to { -webkit-transform: translate3d(-50%, 0, 0); } }
+
+@keyframes eglatone-press-scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); } }
+
+.eglatone-press .press-item {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+.eglatone-press .press-item:before {
+  content: none; }
+
+/* Every logo occupies an identical slot, so a 78x28 wordmark and a 64x64
+   square mark still line up as one even row. */
+.eglatone-press .press-link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  width: var(--press-slot-w, 136px);
+  height: 76px;
+  padding: 0 12px;
+  text-decoration: none; }
+
+.eglatone-press .press-link img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: var(--press-logo-h, 40px);
+  -o-object-fit: contain;
+  object-fit: contain;
+  opacity: 0.75;
+  -webkit-transition: opacity 0.25s ease, -webkit-filter 0.25s ease;
+  transition: opacity 0.25s ease, filter 0.25s ease; }
+
+.eglatone-press.is-grayscale .press-link img {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%); }
+
+.eglatone-press .press-link:hover img,
+.eglatone-press .press-link:focus img {
+  opacity: 1;
+  -webkit-filter: grayscale(0);
+  filter: grayscale(0); }
+
+.eglatone-press .press-name {
+  font-size: 15px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #4a4a55;
+  white-space: nowrap; }
+
+.eglatone-press .press-link:hover .press-name {
+  color: #16161a; }
+
+/* No JS / reduced motion: a plain scrollable row. */
+.eglatone-press.is-static .press-viewport {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; }
+
+.eglatone-press.is-static .press-track {
+  -webkit-animation: none;
+  animation: none; }
+
+@media screen and (max-width: 767px) {
+  .eglatone-press .press-label {
+    padding: 0 12px;
+    height: 62px;
+    font-size: 10px;
+    font-size: 0.625rem; }
+
+  .eglatone-press .press-link {
+    height: 62px;
+    padding: 0 8px;
+    width: calc(var(--press-slot-w, 136px) * 0.8); }
+
+  .eglatone-press .press-link img {
+    max-height: calc(var(--press-logo-h, 40px) * 0.8); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .eglatone-press .press-track {
+    -webkit-animation: none !important;
+    animation: none !important; }
+
+  .eglatone-press .press-link img {
+    -webkit-transition: none;
+    transition: none; } }
+
+/*--------------------------------------------------------------
+12. Pin our section colours
+--------------------------------------------------------------
+
+   The theme paints every ".section:nth-child(even)" with its light secondary
+   background. That selector is a class plus a pseudo-class, so it outranks a
+   plain class like .eglatone-hero - and because it depends on POSITION, adding
+   or removing any section flips the colour of everything after it.
+
+   Pinning by id keeps these sections looking the same no matter where they sit
+   in the running order.
+--------------------------------------------------------------*/
+
+#eglatone-hero-section.eglatone-hero,
+#eglatone-hero-section.eglatone-hero.section {
+  background-color: #131218;
+  color: #f2f2f4; }
+
+#eglatone-hero-section.eglatone-hero .hero-title {
+  color: #ffffff;
+  opacity: 1; }
+
+#eglatone-hero-section.eglatone-hero .hero-eyebrow,
+#eglatone-hero-section.eglatone-hero .hero-stat-value {
+  color: var(--hero-accent, #01e0af); }
+
+#eglatone-hero-section.eglatone-hero .hero-text,
+#eglatone-hero-section.eglatone-hero .hero-stat-label,
+#eglatone-hero-section.eglatone-hero .hero-credential {
+  color: #f2f2f4; }
+
+#eglatone-hero-section.eglatone-hero .hero-button-ghost {
+  color: #f2f2f4;
+  border-color: rgba(255, 255, 255, 0.35); }
+
+#eglatone-ticker-section.eglatone-ticker,
+#eglatone-ticker-section.eglatone-ticker.section {
+  background-color: #131218;
+  color: #f2f2f4; }
+
+#eglatone-press-section.eglatone-press,
+#eglatone-press-section.eglatone-press.section {
+  background-color: #ffffff; }
+
+#eglatone-press-section.eglatone-press .press-label {
+  color: #6b6b76; }
+
+/*--------------------------------------------------------------
+13. Featured Content cards: compact 4-up
+--------------------------------------------------------------
+
+   Roughly a 40% cut in row height so the card row reads as a supporting
+   band rather than competing with the Achievements hero below it.
+   Set Customizer > Theme Options > Homepage Layout > "Featured Content
+   section: cards per row" to 4 to match.
+--------------------------------------------------------------*/
+
+#featured-content-section .eglatone-2up-carousel .post-thumbnail img {
+  height: 108px; }
+
+#featured-content-section .eglatone-2up-carousel.columns-4 .post-thumbnail img {
+  height: 96px; }
+
+#featured-content-section .eglatone-2up-carousel .entry-container {
+  padding: 12px 14px 14px !important; }
+
+/* Titles cap at two lines so one long headline cannot stretch the whole row. */
+#featured-content-section .eglatone-2up-carousel .entry-title {
+  font-size: 15px;
+  font-size: 0.9375rem;
+  line-height: 1.25;
+  margin-bottom: 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden; }
+
+#featured-content-section .eglatone-2up-carousel.columns-4 .entry-title {
+  font-size: 14px;
+  font-size: 0.875rem; }
+
+#featured-content-section .eglatone-2up-carousel .entry-meta {
+  font-size: 11px;
+  font-size: 0.6875rem;
+  margin-bottom: 4px; }
+
+#featured-content-section .eglatone-2up-carousel .entry-summary {
+  margin-bottom: 10px; }
+
+#featured-content-section .eglatone-2up-carousel .entry-summary p {
+  font-size: 12.5px;
+  line-height: 1.45;
+  margin-bottom: 0;
+  -webkit-line-clamp: 2; }
+
+#featured-content-section .eglatone-2up-carousel.columns-4 .entry-summary p {
+  -webkit-line-clamp: 2; }
+
+/* The "Continue reading" button shrinks with the card. */
+#featured-content-section .eglatone-2up-carousel .more-link,
+#featured-content-section .eglatone-2up-carousel .entry-container .more-link {
+  font-size: 10px;
+  font-size: 0.625rem;
+  padding: 6px 12px;
+  margin-top: 0; }
+
+/* Tighter section chrome to match. */
+#featured-content-section.section {
+  padding-top: 34px;
+  padding-bottom: 34px; }
+
+#featured-content-section .section-heading-wrapper {
+  margin-bottom: 20px; }
+
+#featured-content-section .eglatone-2up-carousel .owl-nav {
+  margin-top: 16px; }
+
+#featured-content-section .eglatone-2up-carousel .owl-nav button.owl-prev,
+#featured-content-section .eglatone-2up-carousel .owl-nav button.owl-next {
+  width: 34px;
+  height: 34px; }
+
+@media screen and (max-width: 767px) {
+  #featured-content-section .eglatone-2up-carousel .post-thumbnail img,
+  #featured-content-section .eglatone-2up-carousel.columns-4 .post-thumbnail img {
+    height: 140px; } }
+
+/*--------------------------------------------------------------
+14. Achievements hero: wider, slightly larger body text
+--------------------------------------------------------------
+
+   The measure was too narrow on a laptop, so the introduction read small.
+   Content width up ~22%, prose column up ~22%, body copy up a step.
+--------------------------------------------------------------*/
+
+#eglatone-hero-section.eglatone-hero .wrapper {
+  max-width: 1440px; }
+
+#eglatone-hero-section.eglatone-hero .hero-intro {
+  max-width: 1000px; }
+
+#eglatone-hero-section.eglatone-hero .hero-text {
+  font-size: 17px;
+  font-size: 1.0625rem;
+  line-height: 1.72; }
+
+#eglatone-hero-section.eglatone-hero .hero-title {
+  font-size: 38px;
+  font-size: 2.375rem; }
+
+#eglatone-hero-section.eglatone-hero .hero-stat-value {
+  font-size: 46px;
+  font-size: 2.875rem; }
+
+#eglatone-hero-section.eglatone-hero .hero-stat-label {
+  font-size: 15px;
+  font-size: 0.9375rem; }
+
+#eglatone-hero-section.eglatone-hero .hero-credential {
+  font-size: 14px;
+  font-size: 0.875rem; }
+
+@media screen and (max-width: 1200px) {
+  #eglatone-hero-section.eglatone-hero .hero-intro {
+    max-width: 100%; } }
+
+@media screen and (max-width: 900px) {
+  #eglatone-hero-section.eglatone-hero .hero-title {
+    font-size: 28px;
+    font-size: 1.75rem; }
+
+  #eglatone-hero-section.eglatone-hero .hero-stat-value {
+    font-size: 32px;
+    font-size: 2rem; }
+
+  #eglatone-hero-section.eglatone-hero .hero-text {
+    font-size: 16px;
+    font-size: 1rem; } }
+
+/*--------------------------------------------------------------
+15. Featured Content section heading on one line
+--------------------------------------------------------------
+
+   The theme caps .section-heading-wrapper at 920px and sets .section-title to
+   32-36px uppercase, so a longer heading such as
+   "Clients, Patents, Projects & Startups" broke onto two lines.
+   Widen the box, size the type fluidly, and hold it to one line from tablet up.
+
+   The background is pinned here too: the hero now sits above this section,
+   which flips its odd/even position and would otherwise hand it the theme's
+   light secondary background.
+--------------------------------------------------------------*/
+
+#featured-content-section.section,
+#featured-content-section.featured-content.section {
+  background-color: transparent; }
+
+#featured-content-section .section-heading-wrapper {
+  max-width: 1200px;
+  padding-left: 20px;
+  padding-right: 20px; }
+
+#featured-content-section .section-title {
+  font-size: 30px; /* fallback for browsers without clamp() */
+  font-size: clamp( 18px, 2.4vw, 30px );
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  margin-bottom: 0; }
+
+@media screen and (min-width: 768px) {
+  #featured-content-section .section-title {
+    white-space: nowrap; } }

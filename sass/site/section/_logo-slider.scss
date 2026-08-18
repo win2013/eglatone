@@ -1,0 +1,95 @@
+/**
+ * 7.3.10 - Logo Slider
+ */
+
+#eglatone-logo-slider-section .owl-prev,
+#eglatone-logo-slider-section .owl-next {
+    border: 1px solid transparent;
+    @include border(50%);
+    cursor: pointer;
+    outline: none;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    height: 50px;
+    letter-spacing: 0;
+    outline: none;
+    padding: 0 7px;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    text-decoration: none;
+    width: 50px;
+    z-index: 199;
+}
+
+.eglatone-logo-slider-content-wrapper.owl-carousel .owl-item img {
+    width: auto;
+}
+
+#eglatone-logo-slider-section .owl-prev:before,
+#eglatone-logo-slider-section .owl-next:before {
+    transition-delay: 0.1s;
+    opacity: 0;
+}
+
+#eglatone-logo-slider-section .owl-prev:before {
+    transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+}
+
+#eglatone-logo-slider-section .owl-next:before {
+    transform: translateX(200%);
+    -moz-transform: translateX(200%);
+    -o-transform: translateX(200%);
+    -webkit-transform: translateX(200%);
+}
+
+#eglatone-logo-slider-section {
+    &:hover button:before {
+        transform: translateX(0);
+        -moz-transform: translateX(0);
+        -o-transform: translateX(0);
+        -webkit-transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+#eglatone-logo-slider-section .owl-prev {
+    left: 30px;
+}
+
+#eglatone-logo-slider-section .owl-next {
+    right: 30px;
+}
+
+#eglatone-logo-slider-section:hover .owl-prev,
+#eglatone-logo-slider-section:focus .owl-prev,
+#eglatone-logo-slider-section:hover .owl-next,
+#eglatone-logo-slider-section:focus .owl-next {
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+
+#eglatone-logo-slider-section .owl-dots {
+    margin-bottom: 35px;
+    text-align: center;
+
+    .owl-dot {
+        display: inline-block;
+        margin-right: 15px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+.text-align-center {
+    text-align: center;
+}
